@@ -11,7 +11,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/demo-repo-04/${CINMAE}:${VERSION}']
 
-substututions:
+substitutions:
   PROJECT_ID: robotic-shelter-457318-u6
   CINAME: gke-image
   VERSION: v1.0
