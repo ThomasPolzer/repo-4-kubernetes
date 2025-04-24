@@ -31,11 +31,6 @@ steps:
 
 
 
-availableSecrets:
-  secretManager:
-  - versionName: projects/101192578176/secrets/github-ssh-key/versions/latest
-    env: 'SSH_KEY
-
 substitutions:
   _PROJECT_ID: robotic-shelter-457318-u6
   _CINAME: gke-image
@@ -43,3 +38,9 @@ substitutions:
 
 options:
   logging: CLOUD_LOGGING_ONLY
+
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/101192578176/secrets/github-ssh-key/versions/latest
+    env: 'SSH_KEY'
