@@ -1,7 +1,25 @@
 steps:
 # Step 0: Clone Repo
+
+- name: 'gcr.io/cloud-builders/git'
+  secretEnv: ['SSH_KEY']
+  entrypoint: 'bash'
+  args:
+  - -c
+  - |
+    echo "$$SSH_KEY" >> /root/.ssh/id_rsa
+    chmod 400 /root/.ssh/id_rsa
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+
+# Step 0: Clone Repo
 - name: 'gcr.io/cloud-builders/git'
   args: ['clone', 'git@github.com:ThomasPolzer/repo-4-kubernetes.git']
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
 
 # Step 1: Docker Build
 - name: 'gcr.io/cloud-builders/docker'
@@ -10,6 +28,13 @@ steps:
 # Step 2: Docker Push
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'push', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/demo-repo-04/${_CINAME}:${_VERSION}']
+
+
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/101192578176/secrets/github-ssh-key/versions/latest
+    env: 'SSH_KEY
 
 substitutions:
   _PROJECT_ID: robotic-shelter-457318-u6
