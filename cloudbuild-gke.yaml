@@ -5,15 +5,15 @@ steps:
 
 # Step 1: Docker Build
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/demo-repo-04/${CINAME}:${VERSION}', '.' ]
+  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/demo-repo-04/${_CINAME}:${VERSION}', '.' ]
 
 # Step 2: Docker Push
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/demo-repo-04/${CINAME}:${VERSION}']
+  args: [ 'push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/demo-repo-04/${_CINAME}:${VERSION}']
 
 substitutions:
   PROJECT_ID: robotic-shelter-457318-u6
-  CINAME: gke-image
+  _CINAME: gke-image
   VERSION: v1.0
 
 options:
