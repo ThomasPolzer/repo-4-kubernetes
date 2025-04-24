@@ -1,0 +1,20 @@
+steps:
+# Step 0: Clone Repo
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'git@github.com:ThomasPolzer/repo-4-kubernetes.git']
+
+# Step 1: Docker Build
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/${PROJECT_ID}/demo-repo-04/${CINAME}:${VERSION}', '.' ]
+
+# Step 2: Docker Push
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/demo-repo-04/${CINMAE}:${VERSION}']
+
+substututions:
+  PROJECT_ID: robotic-shelter-457318-u6
+  CINAME: gke-image
+  VERSION: v1.0
+
+options:
+  logging: CLOUD_LOGGING_ONLY
