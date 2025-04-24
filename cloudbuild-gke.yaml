@@ -9,7 +9,7 @@ steps:
 
 # Step 2: Docker Push
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/demo-repo-04/${CINMAE}:${VERSION}']
+  args: [ 'push', 'us-central1-docker.pkg.dev/${PROJECT_ID}/demo-repo-04/${CINAME}:${VERSION}']
 
 substitutions:
   PROJECT_ID: robotic-shelter-457318-u6
